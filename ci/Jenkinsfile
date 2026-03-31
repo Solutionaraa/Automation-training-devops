@@ -36,7 +36,7 @@ pipeline {
         sh '''
           echo "=== Publish artifacts stage ==="
           mkdir -p logs
-          echo "Build number: ${BUILD_NUMBER}, > logs/build-info-ci2.txt
+          echo "Build number: ${BUILD_NUMBER}" > logs/build-info-ci2.txt
         '''
         archiveArtifacts artifacts: 'logs/**', allowEmptyArchive: true
       }
