@@ -3,12 +3,7 @@ pipeline {
 
   options {
     timestamps()
-    buildDiscarder(logRotator(numToKeepStr: '10'))
-  }
-
-  environment {
-    APP_NAME   = 'training-site'
-    IMAGE_TAG  = "training-site:${env.BUILD_NUMBER}"
+    
   }
 
   stages {
@@ -27,15 +22,6 @@ pipeline {
       }
     }
 
-    stage('Build Docker image') {
-      steps {
-        sh '''
-          echo "=== Build Docker Image stage ==="
-          docker build -f docker/Dockerfile -t ${IMAGE_TAG} .
-        '''
-      }
-    }
-
     stage('Test') {
       steps {
         sh '''
@@ -50,9 +36,9 @@ pipeline {
         sh '''
           echo "=== Publish artifacts stage ==="
           mkdir -p logs
-          echo "Build number: ${BUILD_NUMBER}" > logs/build-info-ci.txt
+          echo "Build number: ${BUILD_NUMBER}, PR: ${env.CHANGE_ID}" > logs/build-info-ci2.txt
         '''
-        archiveArtifacts artifacts: 'logs/**,backups/**', allowEmptyArchive: true
+        archiveArtifacts artifacts: 'logs/**', allowEmptyArchive: true
       }
     }
   }
