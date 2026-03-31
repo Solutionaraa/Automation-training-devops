@@ -1,3 +1,4 @@
+hellollllll
 # DevOps Training Project
 
 This repository contains a small Linux/DevOps training project built around a local PHP website, MySQL database, backup and restore automation, health checks, cron scheduling, and log rotation. It is structured like a real project with scripts, docs, infra configuration, logs, backups, and supporting SQL files. [web:1067][file:999]
